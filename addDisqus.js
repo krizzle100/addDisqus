@@ -21,7 +21,7 @@ answersSdk.addListener(answersSdk.events.pageLoad, function (event) {
   //Loads Disqus script.
   let selectDisqusContainer = document.querySelector("#disqus_thread")
   let insertDisqus = document.createElement('script')
-  insertDisqus.src = 'https://platypusplayground-1.disqus.com/embed.js';
+  insertDisqus.src = ''; //Add account specific Disqus script URL e.g. https://<YOUR_DOMAIN.disqus.com/embed.js
   insertDisqus.setAttribute('data-timestamp', +new Date());
   targetNode.appendChild(insertDisqus)
 
