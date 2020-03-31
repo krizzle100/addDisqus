@@ -1,23 +1,29 @@
+//START: Disqus integration
+
 answersSdk.addListener(answersSdk.events.pageLoad, function (event) {
   
   if (answersSdk.getVisiblePageType() === answersSdk.pages.article) {
-  console.log('You are inside an article');
-
-  var disqus_config = function () {
+  
+  //Disqus config vars for article-specific comments.
+  var disqus_config = function () { 
   this.page.url = answersSdk.getVisiblePageData().article.url;
   this.page.identifier = answersSdk.getVisiblePageData().article.id;
   };
+  
+  //Targets DOM node after where we will insert Disqus container.
+  let targetNode = document.querySelector(".article-actions");
+    
+  //Creates DIV where Disqus container will reside.
+  let createDisqusContainer = document.createElement('div')
+  createDisqusContainer.setAttribute("id", "disqus_thread")
+  targetNode.appendChild(createDisqusContainer)
 
-  let a = document.querySelector(".article-actions");
-  let b = document.createElement('div')
-  b.setAttribute("id", "disqus_thread")
-  a.appendChild(b)
-
-  let z = document.querySelector("#disqus_thread")
-  let m = document.createElement('script')
-  m.src = 'https://platypusplayground-1.disqus.com/embed.js';
-  m.setAttribute('data-timestamp', +new Date());
-  a.appendChild(m)
+  //Loads Disqus script.
+  let selectDisqusContainer = document.querySelector("#disqus_thread")
+  let insertDisqus = document.createElement('script')
+  insertDisqus.src = 'https://platypusplayground-1.disqus.com/embed.js';
+  insertDisqus.setAttribute('data-timestamp', +new Date());
+  targetNode.appendChild(insertDisqus)
 
 }
 });
